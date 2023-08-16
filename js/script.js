@@ -1,3 +1,12 @@
+//Fixing Ddocument is not defined in NodeJs
+if (typeof window !== "undefined") {
+    console.log("In Browser");
+    var x = document.getElementById("msg");
+    console.log(x);
+  }
+  else {
+    console.log("In nodeJS");
+  }
 // The unordered list where the player’s guessed letters will appear.
 const guessedLetters = document.querySelector(".guessed-letters");
 // The button with the text “Guess!” in it.
@@ -16,9 +25,23 @@ const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again hide");
 
 const word = "magnolia";
+// console.log(word.length);
+const dot = "●";
+// console.log(dot);
+// const multiplica = dot.repeat(word.length);
+// console.log(multiplica);
 
-const updateWordInProgress = function () {
-    wordInProgress.innerText = "●●●●●●●●";
+const updateWordInProgress = function (word) {
+    wordInProgress.innerText = `${dot.repeat(word.length)}`;
 };
 
-updateWordInProgress();
+updateWordInProgress(word);
+
+guessButton.addEventListener("click", function (e) {
+    console.log(e);
+    e.preventDefault();
+    let valueOfInput = textInput.value;
+    console.log(valueOfInput);
+    textInput.value = "";
+});
+
